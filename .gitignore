@@ -216,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local data lake output (Delta Lake writes here, never committed)
+data/
