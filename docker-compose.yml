@@ -63,3 +63,26 @@ services:
       - ./:/app
     working_dir: /app
     command: ["sleep", "infinity"]
+
+  airflow:
+    image: apache/airflow:2.9.3
+    container_name: airflow
+    environment:
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////opt/airflow/airflow.db
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__WEBSERVER__SECRET_KEY: lakehouse-secret-2026
+      _AIRFLOW_DB_MIGRATE: "true"
+      _AIRFLOW_WWW_USER_CREATE: "true"
+      _AIRFLOW_WWW_USER_USERNAME: admin
+      _AIRFLOW_WWW_USER_PASSWORD: admin123
+      _AIRFLOW_WWW_USER_EMAIL: admin@example.com
+    volumes:
+      - ./orchestration/dags:/opt/airflow/dags
+      - airflow_logs:/opt/airflow/logs
+    ports:
+      - "8081:8080"
+    command: standalone
+
+volumes:
+  airflow_logs:
