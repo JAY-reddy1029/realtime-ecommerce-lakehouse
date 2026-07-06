@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: fact_orders
+    description: "Order-level fact table enriched with date parts and status flags"
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_products
+    description: "Product-level aggregated metrics"
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_users
+    description: "User-level aggregated metrics combining orders and sessions"
+    columns:
+      - name: user_id
+        tests:
+          - unique
+          - not_null
