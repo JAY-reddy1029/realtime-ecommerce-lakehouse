@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: silver
+    description: "Silver layer Delta Lake tables"
+    tables:
+      - name: orders
+        description: "Cleaned order transactions"
+      - name: sessions
+        description: "Cleaned user session events"
+      - name: inventory
+        description: "Cleaned inventory movement events"

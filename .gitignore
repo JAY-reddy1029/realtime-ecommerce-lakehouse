@@ -219,3 +219,8 @@ __marimo__/
 
 # Local data lake output (Delta Lake writes here, never committed)
 data/
+
+# dbt build artifacts
+transformation/lakehouse_dbt/dbt_packages/
+transformation/lakehouse_dbt/logs/
+transformation/lakehouse_dbt/dev.duckdb

@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "Cleaned order transactions from Silver layer"
+    columns:
+      - name: order_id
+        description: "Unique identifier for each order"
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        tests:
+          - not_null
+      - name: amount
+        tests:
+          - not_null
+      - name: status
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['placed', 'confirmed', 'shipped', 'delivered', 'cancelled']
+
+  - name: stg_sessions
+    description: "Cleaned user session events from Silver layer"
+    columns:
+      - name: session_id
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        tests:
+          - not_null
+
+  - name: stg_inventory
+    description: "Cleaned inventory movement events from Silver layer"
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
+      - name: product_id
+        tests:
+          - not_null
